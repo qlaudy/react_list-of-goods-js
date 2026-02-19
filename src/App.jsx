@@ -19,14 +19,14 @@ const SORT_FIELD_NAME = 'name';
 const SORT_FIELD_LENGTH = 'length';
 
 function getPreparedGoods(goods, { sortField, isReversed }) {
-  let preparedGoods = [...goods];
+  const preparedGoods = [...goods];
 
-  if (sortField === 'name') {
-    return preparedGoods.sort((a, b) => a.localeCompare(b));
+  if (sortField === SORT_FIELD_NAME) {
+    preparedGoods.sort((a, b) => a.localeCompare(b));
   }
 
-  if (sortField === 'length') {
-    return preparedGoods.sort((a, b) => a.length - b.length);
+  if (sortField === SORT_FIELD_LENGTH) {
+    preparedGoods.sort((a, b) => a.length - b.length);
   }
 
   if (isReversed === true) {
@@ -58,7 +58,8 @@ export const App = () => {
         <button
           type="button"
           className={`button is-success ${sortField !== SORT_FIELD_LENGTH ? 'is-light' : null}`}
-          onClick={() => setSortField(SORT_FIELD_LENGTH)}>
+          onClick={() => setSortField(SORT_FIELD_LENGTH)}
+        >
           Sort by length
         </button>
 
